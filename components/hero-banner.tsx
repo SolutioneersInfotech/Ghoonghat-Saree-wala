@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import { Sparkles, ArrowRight } from "lucide-react"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { Sparkles, ArrowRight } from "lucide-react";
 
 export default function HeroBanner() {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+    setIsLoaded(true);
+  }, []);
 
   return (
     <section className="relative h-[90vh] md:h-[95vh] overflow-hidden bg-gradient-to-br from-rose-900 via-purple-900 to-indigo-900 ">
@@ -35,30 +35,23 @@ export default function HeroBanner() {
       /> */}
 
       {/* Background video */}
-<video
-  autoPlay
-  muted
-  loop
-  playsInline
-  className="absolute inset-0 w-full h-full object-cover z-0"
->
-  <source src="hero-video.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
-
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+  poster="/poster.png"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="hero-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
       {/* Main content */}
       <div className="relative z-20 container mx-auto px-4 h-full flex items-center mt-28 pb-28">
         <div className="max-w-2xl text-white">
           {/* Animated badge */}
-          <div
-            className={`mt-2 py-2 inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6 transition-all duration-1000 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            <Sparkles className="h-4 w-4 mr-2 text-yellow-400 animate-pulse " />
-            <span className="text-sm font-quicksand font-medium">Premium Collection 2025</span>
-          </div>
 
           {/* Main heading */}
           <h1
@@ -79,29 +72,36 @@ export default function HeroBanner() {
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            Sarees for Every Occasion - From Traditional Ceremonies to Contemporary Celebrations
+            Sarees for Every Occasion - From Traditional Ceremonies to
+            Contemporary Celebrations
           </p>
 
           {/* CTA Buttons */}
           <div
-            className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 animation-delay-900 ${
+            className={`flex flex-col sm:flex-row items-center gap-4 transition-all duration-1000 animation-delay-900 ${
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
             <Button
               size="lg"
-              className="group bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-semibold px-8 py-4 text-lg font-poppins shadow-2xl hover:shadow-rose-500/25 transition-all duration-300 hover:scale-105"
+              className="group bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-semibold px-6 py-2 rounded-full text-lg font-poppins shadow-2xl hover:shadow-rose-500/25 transition-all duration-300 hover:scale-105"
             >
               Shop Now
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-rose-600 font-semibold px-8 py-4 text-lg font-poppins backdrop-blur-sm bg-white/10 hover:scale-105 transition-all duration-300"
+
+            <div
+              className={`inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-1000 ${
+                isLoaded
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
             >
-              View Collections
-            </Button>
+              <Sparkles className="h-4 w-4 mr-2 text-yellow-400 animate-pulse" />
+              <span className="text-sm font-quicksand font-medium">
+                Premium Collection 2025
+              </span>
+            </div>
           </div>
 
           {/* Stats */}
@@ -111,18 +111,30 @@ export default function HeroBanner() {
             }`}
           >
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold font-playfair text-yellow-400">10K+</div>
-              <div className="text-sm font-quicksand text-rose-200">Happy Customers</div>
+              <div className="text-2xl md:text-3xl font-bold font-playfair text-yellow-400">
+                10K+
+              </div>
+              <div className="text-sm font-quicksand text-rose-200">
+                Happy Customers
+              </div>
             </div>
             <div className="w-px h-12 bg-white/30"></div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold font-playfair text-yellow-400">500+</div>
-              <div className="text-sm font-quicksand text-rose-200">Unique Designs</div>
+              <div className="text-2xl md:text-3xl font-bold font-playfair text-yellow-400">
+                500+
+              </div>
+              <div className="text-sm font-quicksand text-rose-200">
+                Unique Designs
+              </div>
             </div>
             <div className="w-px h-12 bg-white/30"></div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold font-playfair text-yellow-400">4.9★</div>
-              <div className="text-sm font-quicksand text-rose-200">Customer Rating</div>
+              <div className="text-2xl md:text-3xl font-bold font-playfair text-yellow-400">
+                4.9★
+              </div>
+              <div className="text-sm font-quicksand text-rose-200">
+                Customer Rating
+              </div>
             </div>
           </div>
         </div>
@@ -137,5 +149,5 @@ export default function HeroBanner() {
         </div>
       </div>
     </section>
-  )
+  );
 }

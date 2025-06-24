@@ -1,41 +1,45 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Search, ShoppingBag, User, Menu, Heart, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState, useEffect } from "react";
+import { Search, ShoppingBag, User, Menu, Heart, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY
+    let lastScrollY = window.scrollY;
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
+      const currentScrollY = window.scrollY;
 
-      setIsScrolled(currentScrollY > 10)
+      setIsScrolled(currentScrollY > 10);
 
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false)
+        setIsVisible(false);
       } else {
-        setIsVisible(true)
+        setIsVisible(true);
       }
 
-      lastScrollY = currentScrollY
-    }
+      lastScrollY = currentScrollY;
+    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
         isVisible ? "translate-y-0" : "-translate-y-full"
-      } ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-rose-100" : "bg-transparent"}`}
+      } ${
+        isScrolled
+          ? "bg-white/10 backdrop-blur-md shadow-lg border-b border-rose-100"
+          : "bg-transparent"
+      }`}
     >
       <div className="container mx-auto px-4">
         {/* Main header */}
@@ -50,9 +54,11 @@ export default function Header() {
             >
               {/* <Menu className="h-5 w-5" /> */}
             </Button>
-            <h1 className="text-2xl md:text-3xl font-playfair font-bold bg-gradient-to-r from-rose-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer">
-              Ghoonghat Saree Wala
-            </h1>
+            <img
+              src="/logo.png" // update with your actual logo path
+              alt="Ghoonghat Saree Wala Logo"
+              className="h-100 md:h-14 hover:scale-105 transition-transform duration-300 cursor-pointer"
+            />
           </div>
 
           {/* Action buttons */}
@@ -128,9 +134,7 @@ export default function Header() {
                 key={item.name}
                 href="#"
                 className={`relative overflow-hidden group transition-all duration-300 hover:-translate-y-0.5 ${
-                  item.active
-                    ? "text-rose-600"
-                    : "hover:text-rose-600"
+                  item.active ? "text-rose-600" : "hover:text-rose-600"
                 } animate-fade-in-up`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -160,7 +164,11 @@ export default function Header() {
               <h2 className="text-xl font-playfair font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
                 Menu
               </h2>
-              <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(false)}>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <X className="h-5 w-5" />
               </Button>
             </div>
@@ -190,5 +198,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
