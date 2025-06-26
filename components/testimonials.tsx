@@ -9,7 +9,7 @@ const testimonials = [
     rating: 5,
     comment:
       "Absolutely love the quality of sarees! The silk saree I bought for my wedding was perfect. Fast delivery and excellent customer service.",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "priya-sharma.jpeg",
     sareeImage: "/placeholder.svg?height=100&width=100",
   },
   {
@@ -19,7 +19,7 @@ const testimonials = [
     rating: 5,
     comment:
       "Best online saree shopping experience! The cotton sarees are so comfortable and the colors are exactly as shown. Highly recommended!",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "anita-patel.jpeg",
     sareeImage: "/placeholder.svg?height=100&width=100",
   },
   {
@@ -29,7 +29,7 @@ const testimonials = [
     rating: 5,
     comment:
       "Amazing collection and affordable prices. I've ordered multiple sarees and each one exceeded my expectations. Great quality!",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "meera-reddy.jpeg",
     sareeImage: "/placeholder.svg?height=100&width=100",
   },
 ]

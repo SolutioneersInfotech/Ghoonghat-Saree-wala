@@ -1,40 +1,47 @@
 import { Search } from "lucide-react"
 import Image from "next/image"
 import { Input } from "./ui/input"
+import Link from "next/link"
 
 const collections = [
   {
     title: "Wedding Sarees",
+    slug: "wedding-sarees",
     description: "Exquisite bridal collection",
     image: "bridal-saree.jpeg",
     color: "from-red-500 to-pink-500",
   },
   {
     title: "Party Wear",
+    slug: "party-wear-saree",
     description: "Glamorous evening sarees",
     image: "party-wear.jpeg",
     color: "from-purple-500 to-indigo-500",
   },
   {
     title: "Cotton Sarees",
+    slug:"cotton-saree",
     description: "Comfortable daily wear",
     image: "cotton-saree.jpeg",
     color: "from-green-500 to-teal-500",
   },
   {
     title: "Office Wear",
+    slug:"office-wear-saree",
     description: "Professional elegance",
     image: "office-wear.jpeg",
     color: "from-blue-500 to-cyan-500",
   },
   {
     title: "New Arrivals",
+    slug:"new-arrivals",
     description: "Latest trending styles",
     image: "new-arrival.jpeg",
     color: "from-orange-500 to-yellow-500",
   },
   {
     title: "Bestsellers",
+    slug:"bestsellers",
     description: "Customer favorites",
     image: "best-seller.jpeg",
     color: "from-rose-500 to-pink-500",
@@ -66,7 +73,7 @@ export default function CuratedCollections() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
           {collections.map((collection, index) => (
-            <div key={index} className="group cursor-pointer">
+            <Link href={`/collections/${collection.slug}`} key={index} className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                 <div
                   className={`absolute inset-0 bg-gradient-to-t ${collection.color} opacity-20 group-hover:opacity-30 transition-opacity z-10`}
@@ -87,7 +94,7 @@ export default function CuratedCollections() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

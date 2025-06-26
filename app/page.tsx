@@ -1,3 +1,5 @@
+'use client';
+
 import Header from "@/components/header"
 import HeroBanner from "@/components/hero-banner"
 import FestiveOffersBanner from "@/components/festive-offers-banner"
@@ -11,6 +13,11 @@ import Footer from "@/components/footer"
 import MobileNavigation from "@/components/mobile-navigation"
 import WhatsAppChat from "@/components/whatsapp-chat"
 import FirstPurchasePopup from "@/components/first-purchase-popup"
+
+interface Product {
+  id: string;
+  title: string;
+}
 
 export default function HomePage() {
   return (
