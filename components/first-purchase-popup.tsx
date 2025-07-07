@@ -29,8 +29,13 @@ export default function FirstPurchasePopup() {
         </button>
 
         <div className="text-center">
-          <div className="bg-gradient-to-r from-rose-500 to-pink-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Gift className="h-8 w-8 text-white" />
+          <div className=" rounded-full flex items-center justify-center mx-auto mb-4">
+            {/* <Gift className="h-8 w-8 text-white" /> */}
+            <img
+              src="sub-logo.png" // 
+              alt="Ghoonghat Saree Wala Logo"
+              className="h-20 w-20 hover:scale-105 transition-transform duration-300 cursor-pointer"
+            />
           </div>
 
           <h3 className="text-2xl font-bold text-gray-800 mb-2">Welcome to ghoonght Saree Wala!</h3>
