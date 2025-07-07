@@ -19,7 +19,7 @@ export default function Footer() {
                 placeholder="Enter your email"
                 className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
               />
-              <Button className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600">
+              <Button className="bg-rose-500  hover:bg-pink-600">
                 Subscribe
               </Button>
             </div>

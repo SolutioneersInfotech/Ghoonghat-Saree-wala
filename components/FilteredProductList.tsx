@@ -65,35 +65,46 @@ export default function FilteredProductList({ products }: { products: any[] }) {
               const price = product.variants?.[0]?.prices?.[0]?.amount ?? 0
               const priceDisplay = (price / 100).toLocaleString("en-IN")
               return (
-                <div key={product.id} className="bg-white rounded-xl shadow hover:shadow-lg transition">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      src={product.thumbnail || "/placeholder.svg"}
-                      alt={product.title}
-                      width={300}
-                      height={300}
-                      className="w-full h-64 object-cover"
-                    />
-                    {/* Optional: Discount Badge */}
-                    {product.metadata?.discount && (
-                      <span className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 text-xs rounded">
-                        {product.metadata.discount}% OFF
-                      </span>
-                    )}
-                  </div>
-                  <div className="p-4 flex flex-col justify-between h-44">
-                    <div>
-                      <h2 className="text-base font-semibold line-clamp-2 mb-1">{product.title}</h2>
-                      <p className="text-xs text-gray-500 line-clamp-2">{product.subtitle}</p>
-                    </div>
-                    <div className="mt-4">
-                      <p className="text-lg font-bold text-rose-600">₹{priceDisplay}</p>
-                      <button className="mt-2 w-full bg-rose-600 text-white py-2 rounded hover:bg-rose-700 transition">
-                        Add to Cart
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <div
+  key={product.id}
+  className="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-2 flex flex-col"
+>
+  {/* Image Section */}
+  <div className="relative rounded-xl overflow-hidden">
+    <Image
+      src={product.thumbnail || "/placeholder.svg"}
+      alt={product.title}
+      width={300}
+      height={300}
+      className="w-full h-56 object-cover rounded-xl"
+    />
+    {product.metadata?.badge && (
+      <span className="absolute top-2 left-2 bg-black text-white text-xs px-2 py-1 rounded">
+        {product.metadata.badge}
+      </span>
+    )}
+  </div>
+
+  {/* Info Section */}
+  <div className="p-3">
+    <h3 className="text-sm font-bold">{product.title}</h3>
+    <p className="text-xs text-gray-600">{product.subtitle}</p>
+    <p className="text-xs text-gray-500 line-clamp-2 mt-1">
+      {product.metadata?.description || "Explore timeless elegance with our premium sarees made with traditional fabrics and fine craftsmanship."}
+    </p>
+  </div>
+
+  {/* Price + Action */}
+  <div className="flex items-center justify-between px-3 pb-3 mt-auto">
+    <span className="font-bold text-black text-base">
+      ₹{(product.variants?.[0]?.prices?.[0]?.amount ?? 0) / 100}
+    </span>
+    <button className="text-white bg-yellow-600 text-sm px-4 py-2 rounded-full hover:bg-gray-800 transition">
+      Buy Now →
+    </button>
+  </div>
+</div>
+
               )
             })
           )}

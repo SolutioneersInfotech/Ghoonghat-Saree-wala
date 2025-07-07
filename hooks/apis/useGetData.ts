@@ -15,24 +15,32 @@ export function useMedusaData<T>({
 
   const medusa_base_url = "http://localhost:9000" 
   const token = process.env.NEXT_PUBLIC_ACCESS_TOKEN
+  const apiKey = process.env.NEXT_PUBLIC_PUBLISHABLE_KEY;
 
-  const fetchData = async (): Promise<T> => {
-    const query = new URLSearchParams(queryParams).toString();
-    const url = `${medusa_base_url}${endpoint}?${query}`;
+ const fetchData = async (): Promise<T> => {
+  const query = new URLSearchParams(queryParams).toString();
+  const url = `${medusa_base_url}${endpoint}?${query}`;
 
-    console.log("token", token)
-    
-    const res = await fetch(url,{
-       headers: {
-            "x-publishable-api-key": "pk_231443ba8b621f508d3fa9a99db1790783fbf19b3692aa1e0033a97eaa3b4041",
-            "Accept": "application/json",
-          },
-    });
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.statusText}`);
-    }
-    return res.json();
-  };
+  const apiKey = process.env.NEXT_PUBLIC_PUBLISHABLE_KEY;
+
+  if (!apiKey) {
+    throw new Error("Publishable API key is missing.");
+  }
+
+  const res = await fetch(url, {
+    headers: {
+      "x-publishable-api-key": apiKey,
+      "Accept": "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch: ${res.statusText}`);
+  }
+
+  return res.json();
+};
+
 
   const { data, error, isLoading, isError, refetch } = useQuery<T>({
     queryKey,

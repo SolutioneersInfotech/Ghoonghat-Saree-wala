@@ -15,6 +15,9 @@ const config: Config = {
     extend: {
       ...defaultConfig.theme?.extend,
       // Your extended theme additions here
+      animation: {
+        'very-slow-pulse': 'pulse 6s ease-in-out infinite', // 6 seconds = very slow blink
+      },
     },
   },
   plugins: [

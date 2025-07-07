@@ -128,6 +128,20 @@ html {
   }
 }
 
+@keyframes verySlowPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.very-slow-pulse {
+  animation: verySlowPulse 3s ease-in-out infinite;
+}
+
+
 /* Backdrop blur support */
 .backdrop-blur-sm {
   backdrop-filter: blur(4px);

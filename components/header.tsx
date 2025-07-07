@@ -4,11 +4,20 @@ import { useState, useEffect } from "react";
 import { Search, ShoppingBag, User, Menu, Heart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 
-export default function Header() {
+interface HeaderProps {
+  onAccountClick: () => void;
+}
+
+export default function Header({ onAccountClick }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isAccountSidebarOpen, setIsAccountSidebarOpen] = useState(false);
+
+    const router = useRouter();
+
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -44,7 +53,6 @@ export default function Header() {
       <div className="container mx-auto px-4">
         {/* Main header */}
         <div className="flex items-center justify-between py-4">
-          {/* Logo */}
           <div className="flex items-center animate-fade-in-up">
             <Button
               variant="ghost"
@@ -55,9 +63,9 @@ export default function Header() {
               {/* <Menu className="h-5 w-5" /> */}
             </Button>
             <img
-              src="/logo.png" // update with your actual logo path
+              src="/log.png" // 
               alt="Ghoonghat Saree Wala Logo"
-              className="h-100 md:h-14 hover:scale-105 transition-transform duration-300 cursor-pointer"
+              className="h-10 md:h-14 hover:scale-105 transition-transform duration-300 cursor-pointer"
             />
           </div>
 
@@ -69,6 +77,7 @@ export default function Header() {
               className={`hidden md:flex hover:bg-rose-50 ${
                 isScrolled ? "text-black" : "text-white"
               } hover:text-rose-600 transition-all duration-200 font-poppins group`}
+              onClick={() => router.push("/wishlist")}
             >
               <Heart className="h-5 w-5 mr-1 group-hover:scale-110 transition-transform duration-200" />
               <span className="hidden lg:inline">Wishlist</span>
@@ -79,6 +88,7 @@ export default function Header() {
               className={`relative hover:bg-rose-50 ${
                 isScrolled ? "text-black" : "text-white"
               } hover:text-rose-600 transition-all duration-200 font-poppins group`}
+              onClick={() => router.push("/cart")}
             >
               <ShoppingBag className="h-5 w-5 mr-1 group-hover:scale-110 transition-transform duration-200" />
               <span className="hidden md:inline">Cart</span>
@@ -87,15 +97,17 @@ export default function Header() {
               </span>
             </Button>
             <Button
-              variant="ghost"
-              size="sm"
-              className={`hover:bg-rose-50 ${
-                isScrolled ? "text-black" : "text-white"
-              } hover:text-rose-600 transition-all duration-200 font-poppins group`}
-            >
-              <User className="h-5 w-5 mr-1 group-hover:scale-110 transition-transform duration-200" />
-              <span className="hidden md:inline">Account</span>
-            </Button>
+  variant="ghost"
+  size="sm"
+  className={`hover:bg-rose-50 ${
+    isScrolled ? "text-black" : "text-white"
+  } hover:text-rose-600 transition-all duration-200 font-poppins group`}
+  onClick={onAccountClick}
+>
+  <User className="h-5 w-5 mr-1 group-hover:scale-110 transition-transform duration-200" />
+  <span className="hidden md:inline">Account</span>
+</Button>
+
           </div>
         </div>
 
@@ -197,6 +209,8 @@ export default function Header() {
           </div>
         </div>
       </div>
+      
+
     </header>
   );
 }
