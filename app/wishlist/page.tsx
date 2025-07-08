@@ -1,5 +1,6 @@
 "use client"
 
+import Header from "@/components/header";
 import Image from "next/image"
 
 export default function WishlistPage() {
@@ -71,8 +72,15 @@ export default function WishlistPage() {
 ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">❤️ My Wishlist</h1>
+    <>
+    <div className="h-32 bg-rose-600">
+    <Header/>
+    </div>
+    
+   
+    <div className="container mx-auto px-4 pt-28 pb-8">
+      
+      <h1 className="text-2xl font-bold mb-6"> My Wishlist</h1>
 
       {wishlistItems?.length === 0 ? (
         <p className="text-gray-500">Your wishlist is empty.</p>
@@ -123,5 +131,6 @@ export default function WishlistPage() {
         </div>
       )}
     </div>
+     </>
   )
 }

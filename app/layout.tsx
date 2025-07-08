@@ -10,7 +10,9 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Ghoonghat Saree Wala - Timeless Elegance for Every Occasion",
   description: "Discover beautiful sarees for weddings, parties, and daily wear. Premium quality, authentic designs.",
-    generator: 'v0.dev'
+   icons:{
+    icon:"sub-logo.png"
+   }
 }
 
 export default function RootLayout({

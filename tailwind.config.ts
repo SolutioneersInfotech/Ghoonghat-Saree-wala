@@ -18,12 +18,15 @@ const config: Config = {
       animation: {
         'very-slow-pulse': 'pulse 6s ease-in-out infinite', // 6 seconds = very slow blink
       },
+      fontFamily: {
+        cinzel: ['"Cinzel Decorative"', ],
+      },
     },
   },
   plugins: [
     ...(defaultConfig.plugins || []),
     require("tailwindcss-animate"),
-  ],
+  ], 
 };
 
 export default config;

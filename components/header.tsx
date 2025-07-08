@@ -5,6 +5,7 @@ import { Search, ShoppingBag, User, Menu, Heart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+import SearchBar from "./SearchBar";
 
 interface HeaderProps {
   onAccountClick: () => void;
@@ -16,8 +17,7 @@ export default function Header({ onAccountClick }: HeaderProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [isAccountSidebarOpen, setIsAccountSidebarOpen] = useState(false);
 
-    const router = useRouter();
-
+  const router = useRouter();
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -52,8 +52,9 @@ export default function Header({ onAccountClick }: HeaderProps) {
     >
       <div className="container mx-auto px-4">
         {/* Main header */}
-        <div className="flex items-center justify-between py-4">
-          <div className="flex items-center animate-fade-in-up">
+        <div className="flex items-center justify-between py-4 relative">
+          {/* Left: Menu & Search */}
+          <div className="flex items-center flex-1 animate-fade-in-up">
             <Button
               variant="ghost"
               size="sm"
@@ -62,15 +63,21 @@ export default function Header({ onAccountClick }: HeaderProps) {
             >
               {/* <Menu className="h-5 w-5" /> */}
             </Button>
+            <SearchBar />
+          </div>
+
+          {/* Center: Logo */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
             <img
-              src="/log.png" // 
+              src="/log.png"
               alt="Ghoonghat Saree Wala Logo"
+              onClick={() => router.push("/")}
               className="h-10 md:h-14 hover:scale-105 transition-transform duration-300 cursor-pointer"
             />
           </div>
 
-          {/* Action buttons */}
-          <div className="flex items-center space-x-2 md:space-x-4 animate-fade-in-up animation-delay-400">
+          {/* Right: Action buttons */}
+          <div className="flex items-center space-x-2 md:space-x-4 animate-fade-in-up animation-delay-400 flex-1 justify-end">
             <Button
               variant="ghost"
               size="sm"
@@ -92,22 +99,21 @@ export default function Header({ onAccountClick }: HeaderProps) {
             >
               <ShoppingBag className="h-5 w-5 mr-1 group-hover:scale-110 transition-transform duration-200" />
               <span className="hidden md:inline">Cart</span>
-              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+              {/* <span className="absolute -top-1 -right-1 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
                 2
-              </span>
+              </span> */}
             </Button>
             <Button
-  variant="ghost"
-  size="sm"
-  className={`hover:bg-rose-50 ${
-    isScrolled ? "text-black" : "text-white"
-  } hover:text-rose-600 transition-all duration-200 font-poppins group`}
-  onClick={onAccountClick}
->
-  <User className="h-5 w-5 mr-1 group-hover:scale-110 transition-transform duration-200" />
-  <span className="hidden md:inline">Account</span>
-</Button>
-
+              variant="ghost"
+              size="sm"
+              className={`hover:bg-rose-50 ${
+                isScrolled ? "text-black" : "text-white"
+              } hover:text-rose-600 transition-all duration-200 font-poppins group`}
+              onClick={onAccountClick}
+            >
+              <User className="h-5 w-5 mr-1 group-hover:scale-110 transition-transform duration-200" />
+              <span className="hidden md:inline">Account</span>
+            </Button>
           </div>
         </div>
 
@@ -128,32 +134,34 @@ export default function Header({ onAccountClick }: HeaderProps) {
             isScrolled ? "opacity-0 h-0 py-0 overflow-hidden" : "opacity-100"
           }`}
         >
-          <div
-            className={`flex space-x-8 text-sm font-bold font-poppins transition-colors duration-300 ${
-              isScrolled ? "text-black" : "text-white"
-            }`}
-          >
-            {[
-              { name: "New Arrivals", active: true },
-              { name: "Wedding Sarees", active: false },
-              { name: "Party Wear", active: false },
-              { name: "Cotton Sarees", active: false },
-              { name: "Office Wear", active: false },
-              { name: "Bestsellers", active: false },
-              { name: "Sale", active: false },
-            ].map((item, index) => (
-              <a
-                key={item.name}
-                href="#"
-                className={`relative overflow-hidden group transition-all duration-300 hover:-translate-y-0.5 ${
-                  item.active ? "text-rose-600" : "hover:text-rose-600"
-                } animate-fade-in-up`}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-rose-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            ))}
+          <div className="flex justify-center">
+            <div
+              className={`flex space-x-8 text-sm font-bold font-poppins transition-colors duration-300 ${
+                isScrolled ? "text-black" : "text-white"
+              }`}
+            >
+              {[
+                { name: "New Arrivals", active: true },
+                { name: "Wedding Sarees", active: false },
+                { name: "Party Wear", active: false },
+                { name: "Cotton Sarees", active: false },
+                { name: "Office Wear", active: false },
+                { name: "Bestsellers", active: false },
+                { name: "Sale", active: false },
+              ].map((item, index) => (
+                <a
+                  key={item.name}
+                  href="#"
+                  className={`relative overflow-hidden group transition-all duration-300 hover:-translate-y-0.5 ${
+                    item.active ? "text-rose-600" : "hover:text-rose-600"
+                  } animate-fade-in-up`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {item.name}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-rose-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
+                </a>
+              ))}
+            </div>
           </div>
         </nav>
 
@@ -209,8 +217,6 @@ export default function Header({ onAccountClick }: HeaderProps) {
           </div>
         </div>
       </div>
-      
-
     </header>
   );
 }
